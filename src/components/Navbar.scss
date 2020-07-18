@@ -1,0 +1,15 @@
+.nav {
+    grid-area: n;
+    background: #baf2bb;
+    ul {
+        padding: 0 10px;
+        list-style: none;
+        li {
+            padding: 10px 0;
+            font-size: 24px;
+            a {
+                text-decoration: none;
+            }
+        }
+    }
+}
