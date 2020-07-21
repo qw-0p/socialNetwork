@@ -1,9 +1,9 @@
 import React from 'react';
-import './Navbar.scss';
+import s from './Navbar.module.scss';
 
 export const Navbar = () => {
     return (
-        <nav className="nav">
+        <nav className={s.nav}>
             <ul>
                 <li className="item">
                     <a href="#">Profile</a>
