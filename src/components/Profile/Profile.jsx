@@ -9,6 +9,7 @@ const Profile = () => {
                 <img
                     src="https://cdn.pixabay.com/photo/2017/10/10/22/24/wide-format-2839089_960_720.jpg"
                     alt=""
+                    className={s.titleImg}
                 />
             </div>
             <div>ava + desc</div>
