@@ -17,14 +17,14 @@ const App = (props) => {
                         path="/dialogs"
                         render={() => (
                             <Dialogs
-                                messages={props.messages}
-                                dialogs={props.dialogs}
+                                messages={props.state.messages}
+                                dialogs={props.state.dialogs}
                             />
                         )}
                     />
                     <Route
                         path="/profile"
-                        render={() => <Profile posts={props.posts} />}
+                        render={() => <Profile posts={props.state.posts} />}
                     />
                 </div>
             </div>
