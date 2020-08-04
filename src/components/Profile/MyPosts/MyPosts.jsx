@@ -29,6 +29,7 @@ const MyPosts = (props) => {
                         rows="5"
                         ref={newPostElement}
                         onChange={onPostChange}
+                        value={props.newPostText}
                     />
                 </div>
 
