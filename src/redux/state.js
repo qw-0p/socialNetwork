@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 let store = {
     _state: {
         profilePage: {
@@ -25,6 +26,21 @@ let store = {
                 {id: 5, name: 'Yarikk'},
             ],
         },
+=======
+let rerenderEntireTree = () => {
+    console.log('State changed');
+};
+
+let state = {
+    profilePage: {
+        posts: [
+            {id: 1, message: 'Hi', likesCount: 12},
+            {id: 2, message: 'He', likesCount: 102},
+            {id: 3, message: 'Hello', likesCount: 121},
+            {id: 4, message: 'Good', likesCount: 14},
+        ],
+        newPostText: 'Я из стейта',
+>>>>>>> c828462880c1dd7093fe60a48463465cc41ff5a2
     },
     rerenderEntireTree() {
         console.log('State changed');
@@ -45,7 +61,31 @@ let store = {
     subscribe(observer) {
         rerenderEntireTree = observer; //наблюдатель
     },
+<<<<<<< HEAD
 };
 
 export default store;
 window.store = store;
+=======
+};
+window.state = state;
+export const addPost = () => {
+    let newPost = {
+        id: 5,
+        message: state.profilePage.newPostText,
+        likesCount: 0,
+    };
+    state.profilePage.posts.push(newPost);
+    rerenderEntireTree(state);
+};
+export const updateNewPostText = (newText) => {
+    state.profilePage.newPostText = newText;
+    rerenderEntireTree(state); //Перерисовка дерева
+};
+
+export const subscribe = (observer) => {
+    rerenderEntireTree = observer; //наблюдатель
+};
+
+export default state;
+>>>>>>> c828462880c1dd7093fe60a48463465cc41ff5a2
