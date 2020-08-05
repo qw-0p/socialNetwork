@@ -26,24 +26,28 @@ let store = {
             ],
         },
     },
-    rerenderEntireTree() {
+    getState() {
+        return this._state;
+    },
+    _callSubscriber() {
         console.log('State changed');
     },
     addPost() {
         let newPost = {
             id: 5,
-            message: state.profilePage.newPostText,
+            message: this._state.profilePage.newPostText,
             likesCount: 0,
         };
-        state.profilePage.posts.push(newPost);
-        rerenderEntireTree(state);
+        this._state.profilePage.posts.push(newPost);
+        this._state.profilePage.newPostText = '';
+        this._callSubscriber(this._state);
     },
     updateNewPostText(newText) {
-        state.profilePage.newPostText = newText;
-        rerenderEntireTree(state); //Перерисовка дерева
+        this._state.profilePage.newPostText = newText;
+        this._callSubscriber(this._state); //Перерисовка дерева
     },
     subscribe(observer) {
-        rerenderEntireTree = observer; //наблюдатель
+        this._callSubscriber = observer; //наблюдатель
     },
 };
 
