@@ -5,6 +5,7 @@ import Navbar from './components/Navbar/Navbar';
 import Profile from './components/Profile/Profile';
 import Dialogs from './components/Dialogs/Dialogs';
 import {Route, BrowserRouter} from 'react-router-dom';
+import store from './redux/store';
 
 const App = (props) => {
     return (
@@ -19,12 +20,7 @@ const App = (props) => {
                     />
                     <Route
                         path="/profile"
-                        render={() => (
-                            <Profile
-                                profilePage={props.state.profilePage}
-                                dispatch={props.dispatch}
-                            />
-                        )}
+                        render={() => <Profile store={props.store} />}
                     />
                 </div>
             </div>
