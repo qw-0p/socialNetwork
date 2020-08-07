@@ -4,6 +4,7 @@ import {
     addPostActionCreator,
 } from '../../../redux/profileReducer';
 import MyPosts from './MyPosts';
+import StoreContext from '../../../StoreContext';
 
 const MyPostsContainer = (props) => {
     let state = props.store.getState();
@@ -16,12 +17,16 @@ const MyPostsContainer = (props) => {
         props.store.dispatch(action);
     };
     return (
-        <MyPosts
-            updateNewPostText={onPostChange}
-            addPost={addPost}
-            posts={state.profilePage.posts}
-            newPostText={state.profilePage.newPostText}
-        />
+        <StoreContext.Consume>
+            {(store) => (
+                <MyPosts
+                    updateNewPostText={onPostChange}
+                    addPost={addPost}
+                    posts={state.profilePage.posts}
+                    newPostText={state.profilePage.newPostText}
+                />
+            )}
+        </StoreContext.Consume>
     );
 };
 export default MyPostsContainer;
