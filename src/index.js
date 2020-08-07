@@ -9,13 +9,9 @@ import StoreContext from './StoreContext';
 let rerenderEntireTree = (state) => {
     ReactDOM.render(
         <BrowserRouter>
-            <StoreContext.Provide value={store}>
-                <App
-                // state={state}
-                // dispatch={store.dispatch.bind(store)}
-                // store={store}
-                />
-            </StoreContext.Provide>
+            <StoreContext.Provider value={store}>
+                <App />
+            </StoreContext.Provider>
         </BrowserRouter>,
         document.getElementById('root')
     );
