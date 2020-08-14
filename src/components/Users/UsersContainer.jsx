@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import Users from './Users';
+import UsersAPIComponent from './UsersAPIComponent';
 import {
     unfollowAC,
     followAC,
@@ -37,4 +37,4 @@ let mapDispatchToProps = (dispatch) => {
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Users);
+export default connect(mapStateToProps, mapDispatchToProps)(UsersAPIComponent);
