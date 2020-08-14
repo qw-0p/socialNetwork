@@ -27,16 +27,17 @@ class UsersAPIComponent extends React.Component {
     };
 
     render() {
-        let pagesCount = Math.ceil(
-            this.props.totalUsersCount / this.props.pageSize
+        return (
+            <Users
+                totalUsersCount={this.props.totalUsersCount}
+                pageSize={this.props.pageSize}
+                currentPage={this.props.currentPage}
+                onPageChanged={this.onPageChanged}
+                users={this.props.users}
+                unfollow={this.props.unfollow}
+                follow={this.props.follow}
+            />
         );
-
-        let pages = [];
-        for (let i = 1; i <= pagesCount; i++) {
-            pages.push(i);
-        }
-
-        return <Users />;
     }
 }
 

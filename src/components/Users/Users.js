@@ -3,6 +3,12 @@ import s from './Users.module.scss';
 import userPhoto from '../../assets/images/user.png';
 
 const Users = (props) => {
+    let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
+
+    let pages = [];
+    for (let i = 1; i <= pagesCount; i++) {
+        pages.push(i);
+    }
     return (
         <div>
             <div>
@@ -10,10 +16,10 @@ const Users = (props) => {
                     return (
                         <span
                             className={
-                                this.props.currentPage === p && s.selectedPage
+                                props.currentPage === p && s.selectedPage
                             }
                             onClick={() => {
-                                this.onPageChanged(p);
+                                props.onPageChanged(p);
                             }}
                         >
                             {p}
@@ -21,7 +27,7 @@ const Users = (props) => {
                     );
                 })}
             </div>
-            {this.props.users.map((u) => (
+            {props.users.map((u) => (
                 <div key={u.id}>
                     <span>
                         <div>
@@ -39,7 +45,7 @@ const Users = (props) => {
                             {u.followed ? (
                                 <button
                                     onClick={() => {
-                                        this.props.unfollow(u.id);
+                                        props.unfollow(u.id);
                                     }}
                                 >
                                     Unfollow
@@ -47,7 +53,7 @@ const Users = (props) => {
                             ) : (
                                 <button
                                     onClick={() => {
-                                        this.props.follow(u.id);
+                                        props.follow(u.id);
                                     }}
                                 >
                                     Follow
