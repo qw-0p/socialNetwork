@@ -1,6 +1,5 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import UsersAPIComponent from './UsersAPIComponent';
 import {
     unfollowAC,
     followAC,
@@ -11,7 +10,7 @@ import {
 import * as axios from 'axios';
 import Users from './Users';
 
-class UsersAPIComponent extends React.Component {
+class UsersContainer extends React.Component {
     componentDidMount() {
         axios
             .get(
@@ -77,4 +76,4 @@ let mapDispatchToProps = (dispatch) => {
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(UsersAPIComponent);
+export default connect(mapStateToProps, mapDispatchToProps)(UsersContainer);
