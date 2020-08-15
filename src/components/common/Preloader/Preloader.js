@@ -12,6 +12,7 @@ const Preloader = () => {
                     alignItems: 'center',
                     margin: '0 auto',
                 }}
+                alt=""
             />
         </div>
     );
