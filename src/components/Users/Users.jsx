@@ -24,6 +24,7 @@ let Users = (props) => {
                             onClick={(e) => {
                                 props.onPageChanged(p);
                             }}
+                            key={p.id}
                         >
                             {p}
                         </span>
@@ -49,7 +50,9 @@ let Users = (props) => {
                         <div>
                             {u.followed ? (
                                 <button
+                                    disabled={props.followingInProgress}
                                     onClick={() => {
+                                        props.toggleFollowingProgress(true);
                                         axios
                                             .delete(
                                                 `https://social-network.samuraijs.com/api/1.0/follow/${u.id}`,
@@ -75,7 +78,9 @@ let Users = (props) => {
                                 </button>
                             ) : (
                                 <button
+                                    disabled={props.followingInProgress}
                                     onClick={() => {
+                                        props.toggleFollowingProgress(true);
                                         axios
                                             .post(
                                                 `https://social-network.samuraijs.com/api/1.0/follow/${u.id}`,
@@ -90,11 +95,14 @@ let Users = (props) => {
                                             )
                                             .then((response) => {
                                                 if (
-                                                    response.data.resultCode ===
+                                                    response.data.resultCode ==
                                                     0
                                                 ) {
                                                     props.follow(u.id);
                                                 }
+                                                props.toggleFollowingProgress(
+                                                    false
+                                                );
                                             });
                                     }}
                                 >
