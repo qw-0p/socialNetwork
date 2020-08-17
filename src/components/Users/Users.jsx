@@ -42,6 +42,7 @@ let Users = (props) => {
                                             : userPhoto
                                     }
                                     className={styles.userPhoto}
+                                    alt=""
                                 />
                             </NavLink>
                         </div>
@@ -56,13 +57,13 @@ let Users = (props) => {
                                                     withCredentials: true,
                                                     headers: {
                                                         'API-KEY':
-                                                            'b1775b2f-c3a5-4509-8dc9-90b5629de7c3',
+                                                            'fe890eae-1cd2-4a43-a8c1-baca1b285e21',
                                                     },
                                                 }
                                             )
                                             .then((response) => {
                                                 if (
-                                                    response.data.resultCode ==
+                                                    response.data.resultCode ===
                                                     0
                                                 ) {
                                                     props.unfollow(u.id);
@@ -83,13 +84,13 @@ let Users = (props) => {
                                                     withCredentials: true,
                                                     headers: {
                                                         'API-KEY':
-                                                            'b1775b2f-c3a5-4509-8dc9-90b5629de7c3',
+                                                            'fe890eae-1cd2-4a43-a8c1-baca1b285e21',
                                                     },
                                                 }
                                             )
                                             .then((response) => {
                                                 if (
-                                                    response.data.resultCode ==
+                                                    response.data.resultCode ===
                                                     0
                                                 ) {
                                                     props.follow(u.id);
