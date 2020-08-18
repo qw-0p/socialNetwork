@@ -1,16 +1,16 @@
 @import '/~normalize';
 .app-wrapper {
-    display: grid;
-    margin: 0 auto;
-    width: 100%;
-    max-width: 1280px;
-    grid-template-areas:
-        'h h'
-        'n c';
-    grid-template-rows: 60px 1fr;
-    grid-template-columns: 2fr 10fr;
+  display: grid;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 1280px;
+  grid-template-areas:
+    'h h'
+    'n c';
+  grid-template-rows: 60px 1fr;
+  grid-template-columns: 2fr 10fr;
 }
 .app-wrapper-content {
-    grid-area: c;
-    background: #3e8914;
+  grid-area: c;
+  background: #3e8914;
 }
