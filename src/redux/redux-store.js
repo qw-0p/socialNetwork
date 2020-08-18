@@ -4,7 +4,7 @@ import sidebarReducer from './sidebarReducer';
 import usersReducer from './usersReducer';
 import authReducer from './authReducer';
 
-const {createStore, combineReducers} = require('redux');
+const {createStore, combineReducers, applyMiddleware} = require('redux');
 
 let reducers = combineReducers({
     profilePage: profileReducer,
@@ -14,6 +14,6 @@ let reducers = combineReducers({
     auth: authReducer,
 });
 
-let store = createStore(reducers);
+let store = createStore(reducers, applyMiddleware());
 
 export default store;
