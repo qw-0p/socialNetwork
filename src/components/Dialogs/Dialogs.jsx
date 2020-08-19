@@ -17,7 +17,7 @@ function Dialogs(props) {
     let body = e.target.value;
     props.updateNewMessageBody(body);
   };
-  if (props.isAuth === false) {
+  if (!props.isAuth) {
     return <Redirect to={'/login'} />;
   }
   return (
