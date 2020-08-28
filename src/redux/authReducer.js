@@ -4,7 +4,7 @@ import {stopSubmit} from 'redux-form';
 const SET_USER_DATA = 'SET_USER_DATA';
 
 let initialState = {
-    id: null,
+    userId: null,
     email: null,
     login: null,
     isAuth: false
