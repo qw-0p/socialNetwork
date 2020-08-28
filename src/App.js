@@ -1,14 +1,20 @@
 import React, {Component} from 'react';
 import './App.scss';
 import Navbar from './components/Navbar/Navbar';
-import {Route} from 'react-router-dom';
+import {Route, withRouter} from 'react-router-dom';
 import DialogsContainer from './components/Dialogs/DialogsContainer';
 import UsersContainer from './components/Users/UsersContainer';
 import ProfileContainer from './components/Profile/ProfileContainer';
 import HeaderContainer from './components/Header/HeaderContainer';
 import LoginPage from './components/Login/Login';
+import {connect} from 'react-redux';
+import {getAuthUserData} from './redux/authReducer';
+import {compose} from 'redux';
 
 class App extends Component {
+    componentDidMount() {
+        this.props.getAuthUserData();
+    }
     render() {
         return (
             <div className='app-wrapper'>
@@ -25,4 +31,4 @@ class App extends Component {
     }
 }
 
-export default App;
+export default compose(withRouter, connect(null, {getAuthUserData}))(App);
