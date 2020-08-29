@@ -16,8 +16,9 @@ class App extends Component {
     componentDidMount() {
         this.props.initializeApp();
     }
+
     render() {
-        if (!this.props.initializded) {
+        if (!this.props.initialized) {
             return <Preloader />;
         }
 
@@ -27,8 +28,11 @@ class App extends Component {
                 <Navbar />
                 <div className='app-wrapper-content'>
                     <Route path='/dialogs' render={() => <DialogsContainer />} />
+
                     <Route path='/profile/:userId?' render={() => <ProfileContainer />} />
+
                     <Route path='/users' render={() => <UsersContainer />} />
+
                     <Route path='/login' render={() => <LoginPage />} />
                 </div>
             </div>
@@ -37,7 +41,7 @@ class App extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    initializded: state.app.initializded
+    initialized: state.app.initialized
 });
 
 export default compose(withRouter, connect(mapStateToProps, {initializeApp}))(App);
