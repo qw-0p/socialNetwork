@@ -4,17 +4,17 @@ import Preloader from '../../common/Preloader/Preloader';
 
 import ProfileStatus from './ProfileStatus';
 
-const ProfileInfo = (props) => {
-    if (!props.profile) {
+const ProfileInfo = ({profile, status, updateStatus}) => {
+    if (!profile) {
         return <Preloader />;
     }
     return (
         <div>
             <div className={s.descriptionBlock}>
-                <img src={props.profile.photos.large} alt='' />
-                <h2>{props.profile.fullName}</h2>
-                <p className={s.description}>{props.profile.lookingForAJob ? props.profile.lookingForAJobDescription : 'Не ищу работу'}</p>
-                <ProfileStatus status={props.status} updateStatus={props.updateStatus} />
+                <img src={profile.photos.large} alt='' />
+                <h2>{profile.fullName}</h2>
+                <p className={s.description}>{profile.lookingForAJob ? profile.lookingForAJobDescription : 'Не ищу работу'}</p>
+                <ProfileStatus status={status} updateStatus={updateStatus} />
             </div>
         </div>
     );
