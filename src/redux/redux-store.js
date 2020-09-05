@@ -8,8 +8,6 @@ import {reducer as formReducer} from 'redux-form';
 import appReducer from './appReducer';
 import {createStore, applyMiddleware, compose, combineReducers} from 'redux';
 
-// const {createStore, combineReducers, applyMiddleware} = require('redux');
-
 let reducers = combineReducers({
     profilePage: profileReducer,
     dialogsPage: dialogsReducer,
