@@ -1,17 +1,17 @@
 import React from 'react';
-import Pagination from '../common/Pagination/Pagination';
+import Paginator from '../common/Pagination/Paginator';
 import User from './User';
 
-let Users = ({currentPage, onPageChanged, totalUsersCount, pageSize, users, ...props}) => {
+let Users = ({currentPage, totalUsersCount, pageSize, onPageChanged, users, ...props}) => {
     return (
         <div>
-            <Pagination currentPage={currentPage} onPageChanged={onPageChanged} totalUsersCount={totalUsersCount} pageSize={pageSize} />
-
-            {users.map((u) => (
-                <User user={u} followingInProgress={props.followingInProgress} follow={props.follow} unfollow={props.unfollow} key={u.id} />
-            ))}
+            <Paginator currentPage={currentPage} onPageChanged={onPageChanged} totalItemsCount={totalUsersCount} pageSize={pageSize} />
+            <div>
+                {users.map((u) => (
+                    <User user={u} followingInProgress={props.followingInProgress} key={u.id} unfollow={props.unfollow} follow={props.follow} />
+                ))}
+            </div>
         </div>
     );
 };
-
 export default Users;
