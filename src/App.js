@@ -2,9 +2,8 @@ import React, {Component} from 'react';
 import './App.scss';
 import Navbar from './components/Navbar/Navbar';
 import {Route, withRouter} from 'react-router-dom';
-import DialogsContainer from './components/Dialogs/DialogsContainer';
 import UsersContainer from './components/Users/UsersContainer';
-import ProfileContainer from './components/Profile/ProfileContainer';
+
 import HeaderContainer from './components/Header/HeaderContainer';
 import LoginPage from './components/Login/Login';
 import {connect} from 'react-redux';
@@ -14,6 +13,11 @@ import Preloader from './components/common/Preloader/Preloader';
 import {BrowserRouter} from 'react-router-dom';
 import store from './redux/redux-store';
 import {Provider} from 'react-redux';
+import {Suspense} from 'react';
+// import DialogsContainer from './components/Dialogs/DialogsContainer';
+// import ProfileContainer from './components/Profile/ProfileContainer';
+const ProfileContainer = React.lazy(() => import('./components/Profile/ProfileContainer'));
+const DialogsContainer = React.lazy(() => import('./components/Dialogs/DialogsContainer'));
 
 class App extends Component {
     componentDidMount() {
@@ -30,9 +34,27 @@ class App extends Component {
                 <HeaderContainer />
                 <Navbar />
                 <div className='app-wrapper-content'>
-                    <Route path='/dialogs' render={() => <DialogsContainer />} />
+                    <Route
+                        path='/dialogs'
+                        render={() => {
+                            return (
+                                <Suspense fallback={<Preloader />}>
+                                    <DialogsContainer />
+                                </Suspense>
+                            );
+                        }}
+                    />
 
-                    <Route path='/profile/:userId?' render={() => <ProfileContainer />} />
+                    <Route
+                        path='/profile/:userId?'
+                        render={() => {
+                            return (
+                                <Suspense fallback={<Preloader />}>
+                                    <ProfileContainer />
+                                </Suspense>
+                            );
+                        }}
+                    />
 
                     <Route path='/users' render={() => <UsersContainer />} />
 
