@@ -27,7 +27,7 @@ const ProfileInfo = ({profile, status, updateStatus, isOwner, savePhoto, savePro
     return (
         <div>
             <div className={s.descriptionBlock}>
-                <img src={profile.photos.large || userPhoto} className={s.mainPhoto} />
+                <img src={profile.photos.large || userPhoto} className={s.mainPhoto} alt='' />
                 {isOwner && <input type={'file'} onChange={onMainPhotoSelected} />}
 
                 {editMode ? (
