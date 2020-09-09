@@ -1,9 +1,8 @@
 import React, {useState} from 'react';
 import s from './ProfileInfo.module.scss';
 import Preloader from '../../common/Preloader/Preloader';
+import ProfileStatusWithHooks from './ProfileStatusWithHooks';
 import userPhoto from '../../../assets/images/user.png';
-
-import ProfileStatus from './ProfileStatus';
 import ProfileDataForm from './ProfileDataForm';
 
 const ProfileInfo = ({profile, status, updateStatus, isOwner, savePhoto, saveProfile}) => {
@@ -20,15 +19,17 @@ const ProfileInfo = ({profile, status, updateStatus, isOwner, savePhoto, savePro
     };
 
     const onSubmit = (formData) => {
-        saveProfile(formData);
-        setEditMode(false);
+        saveProfile(formData).then(() => {
+            setEditMode(false);
+        });
     };
 
     return (
         <div>
             <div className={s.descriptionBlock}>
-                <img src={profile.photos.large || userPhoto} className={s.mainPhoto} alt='' />
+                <img src={profile.photos.large || userPhoto} className={s.mainPhoto} />
                 {isOwner && <input type={'file'} onChange={onMainPhotoSelected} />}
+
                 {editMode ? (
                     <ProfileDataForm initialValues={profile} profile={profile} onSubmit={onSubmit} />
                 ) : (
@@ -41,7 +42,7 @@ const ProfileInfo = ({profile, status, updateStatus, isOwner, savePhoto, savePro
                     />
                 )}
 
-                <ProfileStatus status={status} updateStatus={updateStatus} />
+                <ProfileStatusWithHooks status={status} updateStatus={updateStatus} />
             </div>
         </div>
     );
@@ -50,30 +51,30 @@ const ProfileInfo = ({profile, status, updateStatus, isOwner, savePhoto, savePro
 const ProfileData = ({profile, isOwner, goToEditMode}) => {
     return (
         <div>
-            {isOwner && <button onClick={goToEditMode}>Edit</button>}
-            <h2>{profile.fullName}</h2>
+            {isOwner && (
+                <div>
+                    <button onClick={goToEditMode}>edit</button>
+                </div>
+            )}
             <div>
-                <p className={s.description}>
-                    <b>Looking for a job:</b>
-                    {profile.lookingForAJob ? ' Yes' : ' No'}
-                </p>
+                <b>Full name</b>: {profile.fullName}
+            </div>
+            <div>
+                <b>Looking for a job</b>: {profile.lookingForAJob ? 'yes' : 'no'}
             </div>
             {profile.lookingForAJob && (
                 <div>
-                    <p className={s.description}>
-                        <b>My professional skills: </b>
-                        {profile.lookingForAJobDescription}
-                    </p>
+                    <b>My professional skills</b>: {profile.lookingForAJobDescription}
                 </div>
             )}
 
             <div>
-                <b>About me:</b>: {profile.aboutMe}
+                <b>About me</b>: {profile.aboutMe}
             </div>
             <div>
-                <b>Contacts:</b>:{' '}
+                <b>Contacts</b>:{' '}
                 {Object.keys(profile.contacts).map((key) => {
-                    return <Contact contactTitle={key} contactValue={profile.contacts[key]} />;
+                    return <Contact key={key} contactTitle={key} contactValue={profile.contacts[key]} />;
                 })}
             </div>
         </div>
@@ -83,8 +84,7 @@ const ProfileData = ({profile, isOwner, goToEditMode}) => {
 const Contact = ({contactTitle, contactValue}) => {
     return (
         <div className={s.contact}>
-            <b>{contactTitle}:</b>
-            {contactValue}
+            <b>{contactTitle}</b>: {contactValue}
         </div>
     );
 };
