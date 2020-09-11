@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import './App.scss';
 import Navbar from './components/Navbar/Navbar';
-import {Route, withRouter} from 'react-router-dom';
+import {Route, withRouter, Switch, Redirect} from 'react-router-dom';
 import UsersContainer from './components/Users/UsersContainer';
 
 import HeaderContainer from './components/Header/HeaderContainer';
@@ -26,19 +26,21 @@ class App extends Component {
         if (!this.props.initialized) {
             return <Preloader />;
         }
-
         return (
             <div className='app-wrapper'>
                 <HeaderContainer />
                 <Navbar />
                 <div className='app-wrapper-content'>
-                    <Route path='/dialogs' render={withSuspense(DialogsContainer)} />
+                    <Switch>
+                        <Route path='/dialogs' render={withSuspense(DialogsContainer)} />
 
-                    <Route path='/profile/:userId?' render={withSuspense(ProfileContainer)} />
+                        <Route path='/profile/:userId?' render={withSuspense(ProfileContainer)} />
 
-                    <Route path='/users' render={() => <UsersContainer />} />
+                        <Route path='/users' render={() => <UsersContainer />} />
 
-                    <Route path='/login' render={() => <LoginPage />} />
+                        <Route path='/login' render={() => <LoginPage />} />
+                        <Redirect to='/profile' />
+                    </Switch>
                 </div>
             </div>
         );
