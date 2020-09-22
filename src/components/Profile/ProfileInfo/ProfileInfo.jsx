@@ -1,33 +1,40 @@
-import React, {useState} from 'react';
-import s from './ProfileInfo.module.scss';
-import Preloader from '../../common/Preloader/Preloader';
-import ProfileStatusWithHooks from './ProfileStatusWithHooks';
-import userPhoto from '../../../assets/images/user.png';
-import ProfileDataForm from './ProfileDataForm';
+import React, {useState} from 'react'
+import styles from './ProfileInfo.module.scss'
+import Preloader from '../../common/Preloader/Preloader'
+import ProfileStatusWithHooks from './ProfileStatusWithHooks'
+import userPhoto from '../../../assets/images/user.png'
+import ProfileDataForm from './ProfileDataForm'
 
 const ProfileInfo = ({profile, status, updateStatus, isOwner, savePhoto, saveProfile}) => {
-    let [editMode, setEditMode] = useState(false);
+    let [editMode, setEditMode] = useState(false)
 
     if (!profile) {
-        return <Preloader />;
+        return <Preloader />
     }
 
     const onMainPhotoSelected = (e) => {
         if (e.target.files.length) {
-            savePhoto(e.target.files[0]);
+            savePhoto(e.target.files[0])
         }
-    };
+    }
 
     const onSubmit = (formData) => {
         saveProfile(formData).then(() => {
-            setEditMode(false);
-        });
-    };
+            setEditMode(false)
+        })
+    }
 
     return (
         <div>
-            <div className={s.descriptionBlock}>
-                <img src={profile.photos.large || userPhoto} className={s.mainPhoto} alt='' />
+            <div className={styles.descriptionBlock}>
+                <div className={styles.headerProfile}>
+                    <img src={profile.photos.large || userPhoto} className={styles.mainPhoto} alt='' />
+                    <div className={styles.headerProfile__description}>
+                        <h1>{profile.fullName}</h1>
+                        <ProfileStatusWithHooks status={status} updateStatus={updateStatus} />
+                    </div>
+                </div>
+
                 {isOwner && <input type={'file'} onChange={onMainPhotoSelected} />}
 
                 {editMode ? (
@@ -35,18 +42,16 @@ const ProfileInfo = ({profile, status, updateStatus, isOwner, savePhoto, savePro
                 ) : (
                     <ProfileData
                         goToEditMode={() => {
-                            setEditMode(true);
+                            setEditMode(true)
                         }}
                         profile={profile}
                         isOwner={isOwner}
                     />
                 )}
-
-                <ProfileStatusWithHooks status={status} updateStatus={updateStatus} />
             </div>
         </div>
-    );
-};
+    )
+}
 
 const ProfileData = ({profile, isOwner, goToEditMode}) => {
     return (
@@ -74,19 +79,19 @@ const ProfileData = ({profile, isOwner, goToEditMode}) => {
             <div>
                 <b>Contacts</b>:{' '}
                 {Object.keys(profile.contacts).map((key) => {
-                    return <Contact key={key} contactTitle={key} contactValue={profile.contacts[key]} />;
+                    return <Contact key={key} contactTitle={key} contactValue={profile.contacts[key]} />
                 })}
             </div>
         </div>
-    );
-};
+    )
+}
 
 const Contact = ({contactTitle, contactValue}) => {
     return (
-        <div className={s.contact}>
+        <div className={styles.contact}>
             <b>{contactTitle}</b>: {contactValue}
         </div>
-    );
-};
+    )
+}
 
-export default ProfileInfo;
+export default ProfileInfo

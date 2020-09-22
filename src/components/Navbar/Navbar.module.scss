@@ -1,20 +1,19 @@
 .nav {
-  grid-area: n;
-  background: #baf2bb;
-  ul {
-    padding: 0 10px;
-    list-style: none;
-    .item {
-      padding: 10px 0;
-      font-size: 24px;
-      a {
-        text-decoration: none;
-        color: #fff;
-        font-family: Arial, Helvetica, sans-serif;
-      }
-      a.active {
-        color: gold;
-      }
+    grid-area: n;
+    background: #8d99ae;
+    ul {
+        padding: 0 20px;
+        list-style: none;
+        .item {
+            padding: 7px 0;
+            font-size: 24px;
+            a {
+                text-decoration: none;
+                color: #2b2d42;
+            }
+            a.active {
+                color: #d90429;
+            }
+        }
     }
-  }
 }

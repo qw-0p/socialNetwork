@@ -6,7 +6,36 @@
 .descriptionBlock {
     margin: 10px;
 }
-
+.headerProfile {
+    display: flex;
+}
+.statusDesc {
+    align-items: center;
+    font-size: 21px;
+    cursor: pointer;
+    &:hover .doubleTap {
+        transform: scale(1);
+    }
+}
+.statusChange {
+    input {
+        font-size: 21px;
+        background: inherit;
+        &[type='text'] {
+            outline: none;
+            border: none;
+            border-bottom: 3px solid #ee1b34;
+            margin: 0;
+            padding: 0;
+        }
+    }
+}
+.doubleTap {
+    padding-left: 10px;
+    transform: scale(0);
+    width: 21px;
+    height: 21px;
+}
 .mainPhoto {
     border-radius: 50%;
     width: 250px;

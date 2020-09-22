@@ -1,17 +1,29 @@
 .header {
-  grid-area: h;
-  background: #3e8914;
-  img {
-    width: 60px;
-    height: 60px;
-  }
-  .loginBlock {
-    float: right;
-    margin: 20px;
-    a {
-      color: #fff;
-      text-decoration: none;
-      font-family: sans-serif;
+    grid-area: h;
+    background: #2b2d42;
+
+    img {
+        width: 60px;
+        height: 60px;
+        margin: 10px;
     }
-  }
+}
+.loginBlock {
+    margin: 25px 20px 0 0;
+    float: right;
+    a {
+        background: #ee1b34;
+        padding: 5px 10px;
+        color: #edf2f4;
+        text-decoration: none;
+        font-family: sans-serif;
+    }
+    div {
+        color: #edf2f4;
+    }
+    button {
+        border: none;
+        margin-left: 5px;
+        background-color: #ee1b34;
+    }
 }
