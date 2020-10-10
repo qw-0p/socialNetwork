@@ -3,12 +3,17 @@
     height: 100%;
     object-fit: cover;
 }
-.descriptionBlock {
-    margin: 10px;
-}
+
 .headerProfile {
+    background-color: #ee1b34;
+    margin: 0;
     display: flex;
+    img {
+        padding-right: 20px;
+    }
 }
+
+//status
 .statusDesc {
     align-items: center;
     font-size: 21px;
@@ -37,10 +42,12 @@
     height: 21px;
 }
 .mainPhoto {
-    border-radius: 50%;
+    border-radius: 100%;
     width: 250px;
     height: 250px;
+    margin: 10px;
 }
+
 .contact {
     padding-left: 10px;
 }
